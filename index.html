@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cyber Calculator</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle at center, #0f2027, #05080f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Caja principal */
+.calculadora {
+    background: #0a0f1c;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff33;
+    text-align: center;
+    width: 300px;
+}
+
+/* Pantalla */
+#pantalla {
+    width: 90%;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: black;
+    color: #00ffcc;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    text-align: right;
+    box-shadow: inset 0 0 10px #00ffcc;
+}
+
+/* Botones */
+button {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background: #111827;
+    color: #00f0ff;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00f0ff44;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #00f0ff;
+    color: black;
+    box-shadow: 0 0 15px #00f0ff;
+}
+
+/* Botones especiales */
+.operador {
+    color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff88;
+}
+
+.igual {
+    background: #00ffcc;
+    color: black;
+    font-weight: bold;
+}
+
+.clear {
+    background: #ff004c;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+<div class="calculadora">
+    <input type="text" id="pantalla" disabled>
+
+    <div class="grid">
+        <button class="clear" onclick="limpiar()">C</button>
+        <button class="operador" onclick="agregar('/')">÷</button>
+        <button class="operador" onclick="agregar('*')">×</button>
+        <button class="operador" onclick="agregar('-')">−</button>
+
+        <button onclick="agregar('7')">7</button>
+        <button onclick="agregar('8')">8</button>
+        <button onclick="agregar('9')">9</button>
+        <button class="operador" onclick="agregar('+')">+</button>
+
+        <button onclick="agregar('4')">4</button>
+        <button onclick="agregar('5')">5</button>
+        <button onclick="agregar('6')">6</button>
+        <button class="igual" onclick="calcular()">=</button>
+
+        <button onclick="agregar('1')">1</button>
+        <button onclick="agregar('2')">2</button>
+        <button onclick="agregar('3')">3</button>
+        <button onclick="agregar('.')">.</button>
+
+        <button style="grid-column: span 2;" onclick="agregar('0')">0</button>
+    </div>
+</div>
+
+<script>
+function agregar(valor) {
+    document.getElementById("pantalla").value += valor;
+}
+
+function calcular() {
+    try {
+        document.getElementById("pantalla").value = eval(document.getElementById("pantalla").value);
+    } catch {
+        document.getElementById("pantalla").value = "Error";
+    }
+}
+
+function limpiar() {
+    document.getElementById("pantalla").value = "";
+}
+</script>
+
+</body>
+</html>
